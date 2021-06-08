@@ -1,5 +1,6 @@
 
 from django.core.checks import messages
+from django.http import response
 from lightsave.models import User
 from rest_framework import serializers,status
 from lightsave.serializers import UserSerializer
@@ -71,3 +72,11 @@ class UserAPIView(APIView):
     serializer = UserSerializer(user)
   
     return Response(serializer.data)
+
+class LogoutAPIView(APIView):
+  def post(self, request):
+    response = Response()
+    response.delete_cookie('jwt')
+    response.data = {"message":"successfully logged out"}
+
+    return response
