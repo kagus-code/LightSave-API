@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lightsave'
+    'lightsave',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
