@@ -1,6 +1,7 @@
+from django.db import models
 from django.db.models import fields
 from rest_framework import serializers
-from .models import User
+from .models import User,Appliance,CustomAppliance
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -17,3 +18,24 @@ class UserSerializer(serializers.ModelSerializer):
              instance.set_password(password)
           instance.save()   
           return instance
+
+class ApplianceSerializer(serializers.ModelSerializer):
+
+   class Meta:
+      models = Appliance
+      fields = ('applianceId',
+      'name',
+      'wattage')
+
+class CustomApplianceSerializer(serializers.ModelSerializer):
+
+
+   class Meta:
+      models = CustomAppliance
+      fields = ('applianceId',
+      'name',
+      'wattage',
+      'user')
+
+
+
