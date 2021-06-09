@@ -22,20 +22,15 @@ class UserSerializer(serializers.ModelSerializer):
 class ApplianceSerializer(serializers.ModelSerializer):
 
    class Meta:
-      models = Appliance
-      fields = ('applianceId',
-      'name',
-      'wattage')
+      model = Appliance
+      fields = '__all__'
 
 class CustomApplianceSerializer(serializers.ModelSerializer):
 
 
    class Meta:
-      models = CustomAppliance
-      fields = ('applianceId',
-      'name',
-      'wattage',
-      'user')
+      model = CustomAppliance
+      fields = '__all__'
 
 
 

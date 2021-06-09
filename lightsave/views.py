@@ -1,9 +1,9 @@
 
 from django.core.checks import messages
 from django.http import response
-from lightsave.models import User
+from lightsave.models import User,Appliance,CustomAppliance
 from rest_framework import serializers,status
-from lightsave.serializers import UserSerializer
+from lightsave.serializers import UserSerializer,ApplianceSerializer,CustomApplianceSerializer
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -80,3 +80,15 @@ class LogoutAPIView(APIView):
     response.data = {"message":"successfully logged out"}
 
     return response
+
+class ApplianceApiView(APIView):
+  serializer_class = ApplianceSerializer
+  def get(self,request,format=None):
+    all_appliances = Appliance.objects.all()
+    serializers =ApplianceSerializer(all_appliances,many=True)
+    return Response (serializers.data)
+
+
+
+class CustomApplianceView(APIView):
+  pass
