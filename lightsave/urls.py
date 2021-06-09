@@ -10,4 +10,5 @@ urlpatterns = [
     re_path(r'user/', views.UserAPIView.as_view()),
     re_path(r'logout/', views.LogoutAPIView.as_view()),
     re_path(r'appliances/', views.ApplianceApiView.as_view()),
+    re_path(r'appliances-search/', views.SearchAppliance.as_view()),
 ]

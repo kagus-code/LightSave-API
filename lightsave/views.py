@@ -8,6 +8,8 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import jwt, datetime
+from rest_framework import generics
+from rest_framework import filters
 
 
 # Create your views here.
@@ -88,7 +90,19 @@ class ApplianceApiView(APIView):
     serializers =ApplianceSerializer(all_appliances,many=True)
     return Response (serializers.data)
 
+class SearchAppliance(generics.ListCreateAPIView):
+  search_fields =['name']
+  filter_backends = (filters.SearchFilter,)
+  queryset = Appliance.objects.all()
+  serializer_class = ApplianceSerializer
 
 
 class CustomApplianceView(APIView):
-  pass
+  serializer_class = CustomApplianceSerializer
+  def get(self,request,format=None):
+    all_customs= CustomAppliance.objects.all()
+    serializers= CustomApplianceSerializer(all_customs,many=True)
+    return Response (serializers.data)
+
+  def post(self,request):
+    pass
