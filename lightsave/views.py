@@ -10,6 +10,8 @@ from rest_framework.response import Response
 import jwt, datetime
 from rest_framework import generics
 from rest_framework import filters
+from rest_framework.parsers import JSONParser
+from django.http.response import JsonResponse
 
 
 # Create your views here.
@@ -120,4 +122,21 @@ class CustomApplianceView(APIView):
     else:
       return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+  def put(self,request,format=None):
+    custom_data =JSONParser().parse(request)
+    customApp=CustomAppliance.objects.get(appliaceId=custom_data['applianceId'])
+    customApp_serializer = CustomApplianceSerializer(customApp,data=custom_data)
+    if customApp_serializer.is_valid():
+      customApp_serializer.save()
+      return Response(customApp_serializer.data)
+    else:
+      return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST) 
 
+  def delete(self,request,format=None):
+    custom_data =JSONParser().parse(request)
+    customApp=CustomAppliance.objects.get(appliaceId=custom_data['applianceId'])
+    customApp.delete()
+    return JsonResponse("Delete successfull",safe=False)
+
+
+  
