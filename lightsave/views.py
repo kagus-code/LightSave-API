@@ -105,4 +105,19 @@ class CustomApplianceView(APIView):
     return Response (serializers.data)
 
   def post(self,request):
-    pass
+    serializer =self.serializer_class(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+      serializer.save()
+      customApp_data =serializer.data
+      response={
+        "data":{
+            "Custom-Appliance":dict(customApp_data),
+            "status":"success",
+            "message":"Custom Appliance added successfully",
+        }
+      }
+      return Response(response, status=status.HTTP_201_CREATED)
+    else:
+      return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
