@@ -124,19 +124,19 @@ class CustomApplianceView(APIView):
 
   def put(self,request,format=None):
     custom_data =JSONParser().parse(request)
-    customApp=CustomAppliance.objects.get(appliaceId=custom_data['applianceId'])
+    customApp=CustomAppliance.objects.get(applianceId=custom_data['applianceId'])
     customApp_serializer = CustomApplianceSerializer(customApp,data=custom_data)
     if customApp_serializer.is_valid():
       customApp_serializer.save()
-      return Response(customApp_serializer.data)
+      return JsonResponse("Updated successfully",safe=False)
     else:
       return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST) 
 
   def delete(self,request,format=None):
     custom_data =JSONParser().parse(request)
-    customApp=CustomAppliance.objects.get(appliaceId=custom_data['applianceId'])
+    customApp=CustomAppliance.objects.get(applianceId=custom_data['applianceId'])
     customApp.delete()
-    return JsonResponse("Delete successfull",safe=False)
+    return JsonResponse("Deleted successfully",safe=False)
 
 
   
