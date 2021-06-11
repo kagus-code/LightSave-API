@@ -1,27 +1,26 @@
-#  Watch-Dog Web App
+#  LightSave Api 
 
-#### This an API endpoint for the watch-dog app which lets a user know whats happening in their neighbourhood,  04/06/2021
+#### This an API endpoint for the LightSave, a WebApp that calculates the power consumption and cost ,  09/06/2021
 
 #### By **Eston Kagwima**
 
 ## Description
- this is an end point for a web application that allows you to be in the loop about everything happening in your neighborhood. From contact information of different handyman to meeting announcements or even alerts.
+this is an endpoint for an app that calculates power consumption of common house appliances and estimates the cost of running it for you 
 
 This project was generated with [Django](https://docs.djangoproject.com/en/3.2/) version 3.2.3
 
 
 ### User stories Specification
+- Register for an acoount if you are new.
 - Sign in with the application to start using.
-- Set up a profile about me and a general location and my neighborhood name.
-- Find a list of different businesses in my neighborhood.
-- Find Contact Information for the health department and Police authorities near my neighborhood.
-- Create Posts that will be visible to everyone in my neighborhood.
-- Change My neighborhood when I decide to move out.
-- Only view details of a single neighborhood.
+- Select a common house hold appliance and get its power consumption.
+- The power consumption is displayed in dayly, monthly and yearly.
+- Add a custom appliance if it is not present on the list from the DB.
+- Get estimated cost for running that appliance for  dayly, monthly and yearly..
 
 ## Setup/Installation Requirements
 - install Python3.9
-- Clone this repository `https://github.com/kagus-code/Tuzo-Awards.git`
+- Clone this repository `https://github.com/kagus-code/LightSave-API`
 - Change directory to the project directory using  the `cd` command
 - Open project on VSCode
 - If you want to use virtualenv: `virtualenv ENV && source ENV/bin/activate`
@@ -46,6 +45,7 @@ Create .env file and paste paste the following and fill  required fields:
 #### Run the app
     python3.9 manage.py runserver
     Open terminal on localhost:8000
+    Access the different api endpoints by editing the url
 
 
 ## Technologies Used
@@ -53,9 +53,10 @@ Create .env file and paste paste the following and fill  required fields:
 - Django version 3.2.3
 - Python
 - Postgressql
+- Django Restful api
 
 ## link to live site on heroku
-https://kagus-watchdog.herokuapp.com/
+https://flash-save.herokuapp.com/
 
 ## Support and contact details
 
